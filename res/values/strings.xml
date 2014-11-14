@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DASM.CarlosAzanon</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="btn_consultar">Consultar</string>
+    <string name="progress_title">Consultando BBDD</string>
+    <string name="btn_consultar_click">consultar</string>
+    
+
+</resources>
