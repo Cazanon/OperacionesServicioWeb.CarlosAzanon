@@ -10,6 +10,7 @@ import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,10 +35,19 @@ public class ServicioWebBD extends Activity {
     	new ConsultaBD().execute(dni.getText().toString());
     }
     
+    public void lanzarActividad2(View v){
+    	Intent i = new Intent(this,Actividad2.class);
+    	i.putExtra("dato1", dni.getText().toString());
+    	startActivity(i);
+    }
+    
     private class ConsultaBD extends AsyncTask<String,Void,String>{
 	//Parametro de la entrada
 	//Parametro que manda a la interfaz (por ejemplo el progreso)
 	//Parametro que devuelve el doInBackground y recibe el post execute
+    	
+    	//POST -> Inserta registro nuevo
+    	//PUT  -> Actualizar registro
 
     	private ProgressDialog pDialog;
     	private boolean error;

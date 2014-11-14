@@ -7,6 +7,10 @@
     <string name="progress_title">Consultando BBDD</string>
     <string name="btn_consultar_click">consultar</string>
     <string name="hint_dni">DNI</string>
-    
+    <string name="cambiarActividad">Cambiar</string>
+    <string name="lanzarActividad2">lanzarActividad2</string>
+    <string name="title_activity_actividad2">Actividad2</string>
+    <string name="ButtonActity2">Boton 2</string>
+    <string name="respuesta">responder</string>
 
 </resources>

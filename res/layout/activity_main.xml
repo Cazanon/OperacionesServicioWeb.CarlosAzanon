@@ -19,10 +19,16 @@
     </EditText>
 
     <Button
-        android:id="@+id/consultar"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="@string/btn_consultar_click"
-        android:text="@string/btn_consultar" />
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/cambioActividad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@string/lanzarActividad2"
+        android:text="@string/cambiarActividad" />
 
 </LinearLayout>
