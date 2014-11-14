@@ -22,6 +22,7 @@ import android.widget.Toast;
 public class ServicioWebBD extends Activity {
 
 	private EditText dni;
+	private final int acti=2;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,18 @@ public class ServicioWebBD extends Activity {
     public void lanzarActividad2(View v){
     	Intent i = new Intent(this,Actividad2.class);
     	i.putExtra("dato1", dni.getText().toString());
-    	startActivity(i);
+    	startActivityForResult(i,acti);
+    }
+    
+    @Override
+    public void onActivityResult(int actividad,int resultado,Intent datos){
+    	if(actividad==acti){
+    		String respuesta=datos.getStringExtra("respuesta");
+    		Toast.makeText(ServicioWebBD.this, "Vuelvo de la actividad 2, respuesta:"+respuesta, Toast.LENGTH_SHORT).show();
+    	}else{
+    		Toast.makeText(ServicioWebBD.this, "Resultado erroneo", Toast.LENGTH_SHORT).show();
+    	}
+    	
     }
     
     private class ConsultaBD extends AsyncTask<String,Void,String>{
