@@ -4,8 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="@string/btn_consultar_click"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context="${relativePackage}.${activityClass}" >
+
+    <EditText
+        android:id="@+id/dni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint_dni"
+        android:maxLength="8" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/consultar"

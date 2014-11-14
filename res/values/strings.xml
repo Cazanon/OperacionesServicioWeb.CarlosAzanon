@@ -6,6 +6,7 @@
     <string name="btn_consultar">Consultar</string>
     <string name="progress_title">Consultando BBDD</string>
     <string name="btn_consultar_click">consultar</string>
+    <string name="hint_dni">DNI</string>
     
 
 </resources>
