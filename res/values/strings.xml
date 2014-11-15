@@ -12,5 +12,6 @@
     <string name="title_activity_actividad2">Actividad2</string>
     <string name="ButtonActity2">Boton 2</string>
     <string name="respuesta">responder</string>
+    <string name="title_activity_consulta">consulta_activity</string>
 
 </resources>

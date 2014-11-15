@@ -28,6 +28,10 @@
             android:name=".Actividad2"
             android:label="@string/title_activity_actividad2" >
         </activity>
+        <activity
+            android:name=".Consulta"
+            android:label="@string/title_activity_consulta" >
+        </activity>
     </application>
 
 </manifest>

@@ -4,31 +4,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="@string/btn_consultar_click"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="15dp"
+        android:text="Operaciones Servicio Web"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
         android:id="@+id/dni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:ems="10"
         android:hint="@string/hint_dni"
-        android:maxLength="8" >
+        android:maxLength="8"
+        android:paddingTop="20dp" >
 
         <requestFocus />
     </EditText>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:paddingTop="20dp" >
 
-    <Button
-        android:id="@+id/cambioActividad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="@string/lanzarActividad2"
-        android:text="@string/cambiarActividad" />
+        <Button
+            android:id="@+id/cambioActividad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@string/lanzarActividad2"
+            android:text="@string/cambiarActividad" />
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_search" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_add" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_edit" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_delete" />
+
+    </LinearLayout>
 
 </LinearLayout>
