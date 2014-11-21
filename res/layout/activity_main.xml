@@ -42,27 +42,31 @@
             android:text="@string/cambiarActividad" />
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="goRead"
             android:src="@android:drawable/ic_menu_search" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="goAdd"
             android:src="@android:drawable/ic_menu_add" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="goEdit"
             android:src="@android:drawable/ic_menu_edit" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="goDelete"
             android:src="@android:drawable/ic_menu_delete" />
 
     </LinearLayout>

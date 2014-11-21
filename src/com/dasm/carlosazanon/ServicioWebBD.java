@@ -24,19 +24,42 @@ public class ServicioWebBD extends Activity {
 
 	private EditText dni;
 	private final int acti=2;
+
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
-        
-        
+        setContentView(R.layout.activity_main); 
         dni = (EditText)findViewById(R.id.dni);
     }
     
     public void consultar(View v){
     	new ConsultaBD().execute(dni.getText().toString());
+    }
+    
+    public void goRead(View v){
+    	Intent i = new Intent(this,Consulta.class);
+    	i.putExtra("dni", dni.getText().toString());
+    	startActivity(i);    	
+    }
+    
+    public void goAdd(View v){
+    	Intent i = new Intent(this,Insercion.class);
+    	i.putExtra("dni", dni.getText().toString());
+    	startActivity(i);  	
+    }
+    
+    public void goEdit(View v){
+    	Intent i = new Intent(this,Modificacion.class);
+    	i.putExtra("dni", dni.getText().toString());
+    	startActivity(i);  	
+    }
+    
+    public void goDelete(View v){
+    	Intent i = new Intent(this,Borrado.class);
+    	i.putExtra("dni", dni.getText().toString());
+    	startActivity(i);  
     }
     
     public void lanzarActividad2(View v){

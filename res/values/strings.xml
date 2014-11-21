@@ -13,5 +13,8 @@
     <string name="ButtonActity2">Boton 2</string>
     <string name="respuesta">responder</string>
     <string name="title_activity_consulta">consulta_activity</string>
+    <string name="title_activity_insercion">Insercion</string>
+    <string name="title_activity_modificacion">Modificacion</string>
+    <string name="title_activity_borrado">Borrado</string>
 
 </resources>

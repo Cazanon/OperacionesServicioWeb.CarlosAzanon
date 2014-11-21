@@ -15,32 +15,38 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f060000;
+        public static final int apellidoC=0x7f06000e;
         public static final int button1=0x7f060008;
         public static final int cambioActividad=0x7f060003;
+        public static final int direccionC=0x7f060010;
         public static final int dni=0x7f060002;
-        public static final int editText1=0x7f06000b;
-        public static final int editText2=0x7f06000d;
-        public static final int editText3=0x7f06000f;
-        public static final int editText4=0x7f060011;
-        public static final int editText5=0x7f060013;
-        public static final int editText6=0x7f060015;
-        public static final int imageButton1=0x7f060004;
-        public static final int imageButton2=0x7f060005;
-        public static final int imageButton3=0x7f060006;
-        public static final int imageButton4=0x7f060007;
+        public static final int dniC=0x7f06000a;
+        public static final int equipoC=0x7f060014;
+        public static final int first=0x7f060004;
+        public static final int imageButton1=0x7f060016;
+        public static final int imageButton2=0x7f060017;
+        public static final int imageButton4=0x7f060018;
+        public static final int last=0x7f060007;
+        public static final int nRegistros=0x7f060015;
+        public static final int next=0x7f060006;
+        public static final int nombreC=0x7f06000c;
+        public static final int prev=0x7f060005;
+        public static final int telefonoC=0x7f060012;
         public static final int textView1=0x7f060001;
-        public static final int textView2=0x7f06000a;
-        public static final int textView3=0x7f06000c;
-        public static final int textView4=0x7f06000e;
-        public static final int textView5=0x7f060010;
-        public static final int textView6=0x7f060012;
-        public static final int textView7=0x7f060014;
-        public static final int textView8=0x7f060009;
+        public static final int textView2=0x7f060009;
+        public static final int textView3=0x7f06000b;
+        public static final int textView4=0x7f06000d;
+        public static final int textView5=0x7f06000f;
+        public static final int textView6=0x7f060011;
+        public static final int textView7=0x7f060013;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int layout_actividad2=0x7f030001;
-        public static final int layout_consulta=0x7f030002;
+        public static final int layout_borrado=0x7f030002;
+        public static final int layout_consulta=0x7f030003;
+        public static final int layout_insercion=0x7f030004;
+        public static final int layout_modificacion=0x7f030005;
     }
     public static final class string {
         public static final int ButtonActity2=0x7f040009;
@@ -54,7 +60,10 @@ public final class R {
         public static final int progress_title=0x7f040003;
         public static final int respuesta=0x7f04000a;
         public static final int title_activity_actividad2=0x7f040008;
+        public static final int title_activity_borrado=0x7f04000e;
         public static final int title_activity_consulta=0x7f04000b;
+        public static final int title_activity_insercion=0x7f04000c;
+        public static final int title_activity_modificacion=0x7f04000d;
     }
     public static final class style {
         /** 

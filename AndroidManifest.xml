@@ -32,6 +32,18 @@
             android:name=".Consulta"
             android:label="@string/title_activity_consulta" >
         </activity>
+        <activity
+            android:name=".Insercion"
+            android:label="@string/title_activity_insercion" >
+        </activity>
+        <activity
+            android:name=".Modificacion"
+            android:label="@string/title_activity_modificacion" >
+        </activity>
+        <activity
+            android:name=".Borrado"
+            android:label="@string/title_activity_borrado" >
+        </activity>
     </application>
 
 </manifest>

@@ -10,22 +10,17 @@
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Consulta de Registros"
+        android:paddingBottom="20dp"
+        android:text="Inserción de Registro"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/nRegistros"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="TextView" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" >
+        android:layout_margin="10dp"
+        android:paddingTop="10dp" >
 
         <TextView
             android:id="@+id/textView2"
@@ -41,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:ems="10"
-        	android:gravity="center"
             android:enabled="false" />
 
             <requestFocus />
@@ -50,7 +44,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" >
+        android:layout_margin="10dp" >
 
         <TextView
             android:id="@+id/textView3"
@@ -73,7 +67,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" >
+        android:layout_margin="10dp" >
 
         <TextView
             android:id="@+id/textView4"
@@ -88,15 +82,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-        	android:gravity="center"
-            android:ems="10" />
+            android:ems="10"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" >
+        android:layout_margin="10dp" >
 
         <TextView
             android:id="@+id/textView5"
@@ -111,15 +104,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-        	android:gravity="center"
-            android:ems="10" />
+            android:ems="10"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" >
+        android:layout_margin="10dp" >
 
         <TextView
             android:id="@+id/textView6"
@@ -134,15 +126,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-        	android:gravity="center"
-            android:ems="10" />
+            android:ems="10"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" >
+        android:layout_margin="10dp" >
 
         <TextView
             android:id="@+id/textView7"
@@ -157,40 +148,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-        	android:gravity="center"
-            android:ems="10" />
+            android:ems="10"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal" >
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_media_previous" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_media_rew" />
-
-        <ImageButton
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_media_ff" />
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_media_next" />
+            android:src="@android:drawable/ic_menu_add" />
 
     </LinearLayout>
 
