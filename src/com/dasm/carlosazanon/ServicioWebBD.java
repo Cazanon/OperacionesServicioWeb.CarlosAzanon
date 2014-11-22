@@ -35,13 +35,15 @@ public class ServicioWebBD extends Activity {
     }
     
     public void consultar(View v){
+    	//botonPulsado="consultar";
     	new ConsultaBD().execute(dni.getText().toString());
     }
     
     public void goRead(View v){
+    	//new ConsultaBD().execute(dni.getText().toString());    	
     	Intent i = new Intent(this,Consulta.class);
     	i.putExtra("dni", dni.getText().toString());
-    	startActivity(i);    	
+    	startActivity(i);   
     }
     
     public void goAdd(View v){
@@ -86,13 +88,12 @@ public class ServicioWebBD extends Activity {
     	
     	//POST -> Inserta registro nuevo
     	//PUT  -> Actualizar registro
-
     	private ProgressDialog pDialog;
     	private boolean error;
     	private final String URL = "http://demo.calamar.eui.upm.es/dasmapi/v1/miw04/fichas";
     	
 		@Override
-		protected void onPreExecute() {
+		protected void onPreExecute() {			
 			super.onPreExecute();
 			error=false;
 			pDialog = new ProgressDialog(ServicioWebBD.this);
