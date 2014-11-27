@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:ems="10"
         android:hint="@string/hint_dni"
         android:maxLength="8"
@@ -27,35 +28,38 @@
 
         <requestFocus />
     </EditText>
-
+   
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+    	android:orientation="horizontal"
         android:paddingTop="20dp" >
 
         <ImageButton
-            android:id="@+id/first"
+            android:id="@+id/consultar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="goConsultar"
             android:src="@android:drawable/ic_menu_search" />
 
         <ImageButton
-            android:id="@+id/prev"
+            android:id="@+id/insertar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="goInsertar"
             android:src="@android:drawable/ic_menu_add" />
 
         <ImageButton
-            android:id="@+id/next"
+            android:id="@+id/modificar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="goModificar"
             android:src="@android:drawable/ic_menu_edit" />
 
         <ImageButton
-            android:id="@+id/last"
+            android:id="@+id/borrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="goBorrar"

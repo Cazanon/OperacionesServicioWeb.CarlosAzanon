@@ -57,7 +57,6 @@ public class Modificacion extends Activity {
 			telefono.setText(dato.getString("Telefono"));
 			equipo.setText(dato.getString("Equipo"));
 			
-			//dni.setEnabled(false);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

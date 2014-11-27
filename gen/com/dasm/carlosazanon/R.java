@@ -8,78 +8,107 @@
 package com.dasm.carlosazanon;
 
 public final class R {
+    public static final class array {
+        public static final int pref_example_list_titles=0x7f060000;
+        public static final int pref_example_list_values=0x7f060001;
+        public static final int pref_sync_frequency_titles=0x7f060002;
+        public static final int pref_sync_frequency_values=0x7f060003;
+    }
     public static final class attr {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f060000;
-        public static final int anterior=0x7f06001b;
-        public static final int apellidoC=0x7f060016;
-        public static final int apellidosB=0x7f06000c;
-        public static final int apellidosI=0x7f060020;
-        public static final int apellidosM=0x7f060026;
-        public static final int direccionB=0x7f06000e;
-        public static final int direccionC=0x7f060017;
-        public static final int direccionI=0x7f060021;
-        public static final int direccionM=0x7f060027;
-        public static final int dni=0x7f060002;
-        public static final int dniB=0x7f060008;
-        public static final int dniC=0x7f060014;
-        public static final int dniI=0x7f06001e;
-        public static final int dniM=0x7f060024;
-        public static final int equipoB=0x7f060012;
-        public static final int equipoC=0x7f060019;
-        public static final int equipoI=0x7f060023;
-        public static final int equipoM=0x7f060029;
-        public static final int first=0x7f060003;
-        public static final int last=0x7f060006;
-        public static final int nRegistros=0x7f060013;
-        public static final int next=0x7f060005;
-        public static final int nombreB=0x7f06000a;
-        public static final int nombreC=0x7f060015;
-        public static final int nombreI=0x7f06001f;
-        public static final int nombreM=0x7f060025;
-        public static final int prev=0x7f060004;
-        public static final int primero=0x7f06001a;
-        public static final int siguiente=0x7f06001c;
-        public static final int telefonoB=0x7f060010;
-        public static final int telefonoC=0x7f060018;
-        public static final int telefonoI=0x7f060022;
-        public static final int telefonoM=0x7f060028;
-        public static final int textView1=0x7f060001;
-        public static final int textView2=0x7f060007;
-        public static final int textView3=0x7f060009;
-        public static final int textView4=0x7f06000b;
-        public static final int textView5=0x7f06000d;
-        public static final int textView6=0x7f06000f;
-        public static final int textView7=0x7f060011;
-        public static final int ultimo=0x7f06001d;
+        public static final int LinearLayout1=0x7f080000;
+        public static final int anterior=0x7f080017;
+        public static final int apellidoC=0x7f080012;
+        public static final int apellidosB=0x7f080007;
+        public static final int apellidosI=0x7f08001c;
+        public static final int apellidosM=0x7f080027;
+        public static final int borrar=0x7f080024;
+        public static final int consultar=0x7f080021;
+        public static final int direccionB=0x7f080009;
+        public static final int direccionC=0x7f080013;
+        public static final int direccionI=0x7f08001d;
+        public static final int direccionM=0x7f080028;
+        public static final int dni=0x7f080020;
+        public static final int dniB=0x7f080003;
+        public static final int dniC=0x7f080010;
+        public static final int dniI=0x7f08001a;
+        public static final int dniM=0x7f080025;
+        public static final int equipoB=0x7f08000d;
+        public static final int equipoC=0x7f080015;
+        public static final int equipoI=0x7f08001f;
+        public static final int equipoM=0x7f08002a;
+        public static final int first=0x7f08000e;
+        public static final int insertar=0x7f080022;
+        public static final int modificar=0x7f080023;
+        public static final int nRegistros=0x7f08000f;
+        public static final int nombreB=0x7f080005;
+        public static final int nombreC=0x7f080011;
+        public static final int nombreI=0x7f08001b;
+        public static final int nombreM=0x7f080026;
+        public static final int primero=0x7f080016;
+        public static final int siguiente=0x7f080018;
+        public static final int telefonoB=0x7f08000b;
+        public static final int telefonoC=0x7f080014;
+        public static final int telefonoI=0x7f08001e;
+        public static final int telefonoM=0x7f080029;
+        public static final int textView1=0x7f080001;
+        public static final int textView2=0x7f080002;
+        public static final int textView3=0x7f080004;
+        public static final int textView4=0x7f080006;
+        public static final int textView5=0x7f080008;
+        public static final int textView6=0x7f08000a;
+        public static final int textView7=0x7f08000c;
+        public static final int ultimo=0x7f080019;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int layout_borrado=0x7f030001;
-        public static final int layout_consulta=0x7f030002;
-        public static final int layout_insercion=0x7f030003;
+        public static final int layout_borrado=0x7f030000;
+        public static final int layout_consulta=0x7f030001;
+        public static final int layout_insercion=0x7f030002;
+        public static final int layout_main=0x7f030003;
         public static final int layout_modificacion=0x7f030004;
     }
     public static final class string {
-        public static final int ButtonActity2=0x7f040009;
-        public static final int app_name=0x7f040000;
-        public static final int btn_consultar=0x7f040002;
-        public static final int btn_consultar_click=0x7f040004;
-        public static final int cambiarActividad=0x7f040006;
-        public static final int hello_world=0x7f040001;
-        public static final int hint_dni=0x7f040005;
-        public static final int lanzarActividad2=0x7f040007;
-        public static final int progress_title=0x7f040003;
-        public static final int respuesta=0x7f04000a;
-        public static final int title_activity_actividad2=0x7f040008;
-        public static final int title_activity_borrado=0x7f04000e;
-        public static final int title_activity_consulta=0x7f04000b;
-        public static final int title_activity_insercion=0x7f04000c;
-        public static final int title_activity_modificacion=0x7f04000d;
+        public static final int ButtonActity2=0x7f050009;
+        public static final int app_name=0x7f050000;
+        public static final int btn_consultar=0x7f050002;
+        public static final int btn_consultar_click=0x7f050004;
+        public static final int cambiarActividad=0x7f050006;
+        public static final int hello_world=0x7f050001;
+        public static final int hint_dni=0x7f050005;
+        public static final int lanzarActividad2=0x7f050007;
+        public static final int pref_default_display_name=0x7f050014;
+        public static final int pref_description_social_recommendations=0x7f050012;
+        /**  Example settings for Data & Sync 
+         */
+        public static final int pref_header_data_sync=0x7f050016;
+        /**  Strings related to Settings 
+ Example General settings 
+         */
+        public static final int pref_header_general=0x7f050010;
+        /**  Example settings for Notifications 
+         */
+        public static final int pref_header_notifications=0x7f050019;
+        public static final int pref_ringtone_silent=0x7f05001c;
+        public static final int pref_title_add_friends_to_messages=0x7f050015;
+        public static final int pref_title_display_name=0x7f050013;
+        public static final int pref_title_new_message_notifications=0x7f05001a;
+        public static final int pref_title_ringtone=0x7f05001b;
+        public static final int pref_title_social_recommendations=0x7f050011;
+        public static final int pref_title_sync_frequency=0x7f050017;
+        public static final int pref_title_system_sync_settings=0x7f050018;
+        public static final int pref_title_vibrate=0x7f05001d;
+        public static final int progress_title=0x7f050003;
+        public static final int respuesta=0x7f05000a;
+        public static final int title_activity_actividad2=0x7f050008;
+        public static final int title_activity_borrado=0x7f05000e;
+        public static final int title_activity_consulta=0x7f05000b;
+        public static final int title_activity_insercion=0x7f05000c;
+        public static final int title_activity_modificacion=0x7f05000d;
+        public static final int title_activity_opciones=0x7f05000f;
     }
     public static final class style {
         /** 
@@ -103,10 +132,16 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f070001;
+    }
+    public static final class xml {
+        public static final int pref_data_sync=0x7f040000;
+        public static final int pref_general=0x7f040001;
+        public static final int pref_headers=0x7f040002;
+        public static final int pref_notification=0x7f040003;
     }
 }

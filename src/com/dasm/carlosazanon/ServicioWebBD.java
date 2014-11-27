@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ServicioWebBD extends Activity {
@@ -29,12 +31,67 @@ public class ServicioWebBD extends Activity {
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); 
-        dni = (EditText)findViewById(R.id.dni);
+    	super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_main);
+
+		dni = (EditText)findViewById(R.id.dni);
+        new Conexion().execute();
     }
-      
-    public void goConsultar(View v){
+
+    private class Conexion extends AsyncTask<String,Void,String>{
+    
+		@Override
+		protected String doInBackground(String... params) {			
+			String datos = "";
+			try {
+				AndroidHttpClient httpClient = AndroidHttpClient.newInstance("AndroidHttpClient");
+				HttpGet httpGet = new HttpGet(URL);
+				HttpResponse response = httpClient.execute(httpGet);
+				datos = EntityUtils.toString(response.getEntity());
+				httpClient.close();
+			} catch (IOException e) {
+				procesarError();
+			}
+			return datos;	
+		}
+		
+		@Override
+		protected void onPostExecute(String datos){
+			try {
+				JSONArray arrayDatos = new JSONArray(datos);
+				int n=arrayDatos.getJSONObject(0).getInt("NUMREG");
+				if(n==-1){
+					procesarError();
+					return;
+				}
+			}catch (Exception e){
+				procesarError();
+				return;
+			}
+			Toast.makeText(ServicioWebBD.this, "Conexion establecida", Toast.LENGTH_SHORT).show();
+		}	
+		
+		private void procesarError(){
+			Toast.makeText(ServicioWebBD.this, "Fallo al conectar", Toast.LENGTH_SHORT).show();
+			deshabilitarFuncionalidad();
+		}
+    }
+    
+	private void deshabilitarFuncionalidad() {		
+		TextView dni = (TextView)findViewById(R.id.dni);
+		ImageButton consultar=(ImageButton)findViewById(R.id.consultar);
+		ImageButton modificar=(ImageButton)findViewById(R.id.modificar);
+		ImageButton insertar=(ImageButton)findViewById(R.id.insertar);
+		ImageButton borrar=(ImageButton)findViewById(R.id.borrar);
+		
+		dni.setEnabled(false);
+		consultar.setEnabled(false);
+		modificar.setEnabled(false);
+		insertar.setEnabled(false);
+		borrar.setEnabled(false);		
+	}
+	
+	public void goConsultar(View v){
     	new ConsultaBD().execute(dni.getText().toString()); 
     }
     

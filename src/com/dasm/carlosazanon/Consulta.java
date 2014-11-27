@@ -35,54 +35,41 @@ public class Consulta extends Activity {
 		mostrarRegistro(registroActual);		 
 	}
 	
-	/*
-	public void responderActividadUno(View v){
-		//Intent i=new Intent();
-		//i.putExtra("respuesta","OK");
-		//setResult(RESULT_OK,i);
-		finish();
-	}
-	*/
 	@Override
 	public void onBackPressed(){
-		//Intent i=new Intent();
-		//i.putExtra("respuesta","Pulsado para Atras!");
-		//setResult(RESULT_OK,i);
 		super.onBackPressed();
 	}
-	
 	 
-	 
-	 private void mostrarRegistro(int numeroRegistro){
-			try {
-				TextView textIdentificadorRegistro = (TextView)findViewById(R.id.nRegistros);
-				textIdentificadorRegistro.setText("Registro "+numeroRegistro+" de "+numRegistros);
+	private void mostrarRegistro(int numeroRegistro){
+		try {
+			TextView textIdentificadorRegistro = (TextView)findViewById(R.id.nRegistros);
+			textIdentificadorRegistro.setText("Registro "+numeroRegistro+" de "+numRegistros);
 
-				JSONObject registroMostrable = registros.getJSONObject(numeroRegistro);
+			JSONObject registroMostrable = registros.getJSONObject(numeroRegistro);
 
-				TextView txtDni = (TextView)findViewById(R.id.dniC);
-				TextView txtNombre = (TextView)findViewById(R.id.nombreC);
-				TextView txtApellidos = (TextView)findViewById(R.id.apellidoC);
-				TextView txtDireccion = (TextView)findViewById(R.id.direccionC);
-				TextView txtTelefono = (TextView)findViewById(R.id.telefonoC);
-				TextView txtEquipo = (TextView)findViewById(R.id.equipoC);
+			TextView txtDni = (TextView)findViewById(R.id.dniC);
+			TextView txtNombre = (TextView)findViewById(R.id.nombreC);
+			TextView txtApellidos = (TextView)findViewById(R.id.apellidoC);
+			TextView txtDireccion = (TextView)findViewById(R.id.direccionC);
+			TextView txtTelefono = (TextView)findViewById(R.id.telefonoC);
+			TextView txtEquipo = (TextView)findViewById(R.id.equipoC);
 
-				txtDni.setText(registroMostrable.getString("DNI"));
-				txtDni.setEnabled(false);
-				txtNombre.setText(registroMostrable.getString("Nombre"));
-				txtNombre.setFocusable(false);
-				txtApellidos.setText(registroMostrable.getString("Apellidos"));
-				txtApellidos.setFocusable(false);
-				txtDireccion.setText(registroMostrable.getString("Direccion"));
-				txtDireccion.setFocusable(false);
-				txtTelefono.setText(registroMostrable.getString("Telefono"));
-				txtTelefono.setFocusable(false);
-				txtEquipo.setText(registroMostrable.getString("Equipo"));
-				txtEquipo.setFocusable(false);				
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+			txtDni.setText(registroMostrable.getString("DNI"));
+			txtDni.setEnabled(false);
+			txtNombre.setText(registroMostrable.getString("Nombre"));
+			txtNombre.setFocusable(false);
+			txtApellidos.setText(registroMostrable.getString("Apellidos"));
+			txtApellidos.setFocusable(false);
+			txtDireccion.setText(registroMostrable.getString("Direccion"));
+			txtDireccion.setFocusable(false);
+			txtTelefono.setText(registroMostrable.getString("Telefono"));
+			txtTelefono.setFocusable(false);
+			txtEquipo.setText(registroMostrable.getString("Equipo"));
+			txtEquipo.setFocusable(false);				
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
+	}
 	 
 	 public void primero(View v) {
 		 if(registroActual!=1){
