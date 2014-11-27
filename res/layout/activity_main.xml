@@ -3,7 +3,6 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="@string/btn_consultar_click"
     android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
 
@@ -34,39 +33,32 @@
         android:layout_height="wrap_content"
         android:paddingTop="20dp" >
 
-        <Button
-            android:id="@+id/cambioActividad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@string/lanzarActividad2"
-            android:text="@string/cambiarActividad" />
-
         <ImageButton
             android:id="@+id/first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="goRead"
+            android:onClick="goConsultar"
             android:src="@android:drawable/ic_menu_search" />
 
         <ImageButton
             android:id="@+id/prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="goAdd"
+            android:onClick="goInsertar"
             android:src="@android:drawable/ic_menu_add" />
 
         <ImageButton
             android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="goEdit"
+            android:onClick="goModificar"
             android:src="@android:drawable/ic_menu_edit" />
 
         <ImageButton
             android:id="@+id/last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="goDelete"
+            android:onClick="goBorrar"
             android:src="@android:drawable/ic_menu_delete" />
 
     </LinearLayout>

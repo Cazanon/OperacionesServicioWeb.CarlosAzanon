@@ -20,8 +20,8 @@ import android.widget.TextView;
 public class Borrado extends Activity {
 
 	private JSONArray records;
-	private JSONObject record;
-	private Bundle extras;
+	private String URL;
+	private String DNI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +29,11 @@ public class Borrado extends Activity {
         setContentView(R.layout.layout_borrado);
         
         Intent i = getIntent();
-        extras = i.getExtras();
+        Bundle extras = i.getExtras();
         String datos = extras.getString("datos");
+        URL=extras.getString("url");
 
+    	JSONObject record;
 		try {
 			records = new JSONArray(datos);
 			record = records.getJSONObject(1);
@@ -44,6 +46,7 @@ public class Borrado extends Activity {
 			EditText equipo = (EditText)findViewById(R.id.equipoB);
 
 			dni.setText(record.getString("DNI"));
+			DNI=record.getString("DNI");
 			nombre.setText(record.getString("Nombre"));
 			apellidos.setText(record.getString("Apellidos"));
 			direccion.setText(record.getString("Direccion"));
@@ -60,49 +63,28 @@ public class Borrado extends Activity {
 			e.printStackTrace();
 		}
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
     
-    public void deleteRecord(View v) {
-    	new DeleteBD().execute();
+    public void boorrarRegistro(View v) {
+    	new BorrarBD().execute();
     	
     	Intent i=new Intent();
-		i.putExtra("respuesta","Borrado realizado");
+		i.putExtra("respuesta","Registro borrado");
 		setResult(RESULT_OK,i);
     	
 		finish();
     }
     
-    private class DeleteBD extends AsyncTask<String, Void, Void>{
+    private class BorrarBD extends AsyncTask<String, Void, Void>{
 
 		@Override
 		protected Void doInBackground(String... params) {
-			String url = extras.getString("url");
-			String dni = extras.getString("dni");
 			try {
 				AndroidHttpClient httpclient = AndroidHttpClient.newInstance("AndroidHttpClient");
-				HttpDelete httpdelete = new HttpDelete(url + "/" + dni);
+				HttpDelete httpdelete = new HttpDelete(URL + "/" + DNI);
 				httpclient.execute(httpdelete);
 				httpclient.close();
 			} catch (IOException e) {
-				Log.e("Error en la operación (IO)", e.toString());
+				Log.e("Error en la operacion(IO)", e.toString());
 				e.printStackTrace();
 			}
 			return null;

@@ -20,27 +20,28 @@ import android.widget.TextView;
 
 public class Modificacion extends Activity {
 
-	private JSONArray registros;
-	private Bundle extras;
+	private JSONArray registro;
+	private String URL;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_consulta);
+		setContentView(R.layout.layout_modificacion);
 		
-		extras = getIntent().getExtras();
+		Bundle extras = getIntent().getExtras();
 		String datos = extras.getString("datos");
-
+		
+		URL=extras.getString("url");
+		
 		try {
-			registros = new JSONArray(datos);
+			registro = new JSONArray(datos);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
-		JSONObject registro;
-
+		JSONObject dato;
 		try {
-			registro = registros.getJSONObject(1);
+			dato = registro.getJSONObject(1);
 
 			TextView dni = (TextView)findViewById(R.id.dniM);
 			EditText nombre = (EditText)findViewById(R.id.nombreM);
@@ -49,39 +50,20 @@ public class Modificacion extends Activity {
 			EditText telefono = (EditText)findViewById(R.id.telefonoM);
 			EditText equipo = (EditText)findViewById(R.id.equipoM);
 
-			dni.setText(registro.getString("DNI"));
-			nombre.setText(registro.getString("Nombre"));
-			apellidos.setText(registro.getString("Apellidos"));
-			direccion.setText(registro.getString("Direccion"));
-			telefono.setText(registro.getString("Telefono"));
-			equipo.setText(registro.getString("Equipo"));
+			dni.setText(dato.getString("DNI"));
+			nombre.setText(dato.getString("Nombre"));
+			apellidos.setText(dato.getString("Apellidos"));
+			direccion.setText(dato.getString("Direccion"));
+			telefono.setText(dato.getString("Telefono"));
+			equipo.setText(dato.getString("Equipo"));
 			
-			dni.setEnabled(false);
-		} catch (JSONException e1) {
-			e1.printStackTrace();
+			//dni.setEnabled(false);
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 	}
-/*
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}*/
 	
-	public void updateregistro(View v) {
+	public void modificarRegistro(View v) {
 		try {
 			EditText dni = (EditText)findViewById(R.id.dniM);
 			EditText nombre = (EditText)findViewById(R.id.nombreM);
@@ -100,37 +82,45 @@ public class Modificacion extends Activity {
 			jsonObject.put("Equipo", equipo.getText().toString());
 			json = jsonObject.toString();
 			
-			new UpdateBD().execute(json);
+			new ModificarBD().execute(json);
 			
 			Intent i=new Intent();
-			i.putExtra("respuesta","Actualización realizada");
+			i.putExtra("respuesta","Registro modificado");
 			setResult(RESULT_OK,i);
 			
 			finish();
 		} catch (JSONException e) {
-			Log.e("Error en la operaciÃ³n (JSON)", e.toString());
+			Log.e("Error en la operacion(JSON)", e.toString());
 			e.printStackTrace();
 		} 
 	}
 	
-	private class UpdateBD extends AsyncTask<String, Void, Void> {
+	private class ModificarBD extends AsyncTask<String, Void, Void> {
 
 		@Override
 		protected Void doInBackground(String... params) {
 			String json = params[0];
 			try {
 				AndroidHttpClient httpclient = AndroidHttpClient.newInstance("AndroidHttpClient");
-				HttpPut httpput = new HttpPut(extras.getString("url"));
+				HttpPut httpput = new HttpPut(URL);
 				StringEntity se = new StringEntity(json);
 				httpput.setEntity(se);
 				httpclient.execute(httpput);
 				httpclient.close();
 			} catch (IOException e) {
-				Log.e("Error en la operacion (IO)", e.toString());
+				Log.e("Error en la operacion(IO)", e.toString());
 				e.printStackTrace();
 			}
 			return null;
-		}
-		
+		}		
+	}
+	
+    
+    @Override
+	public void onBackPressed(){
+		Intent i=new Intent();
+		i.putExtra("respuesta","Modificacion cancelada");
+		setResult(RESULT_CANCELED,i);
+		super.onBackPressed();
 	}
 }

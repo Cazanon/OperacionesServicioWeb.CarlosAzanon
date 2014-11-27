@@ -20,64 +20,40 @@ import android.widget.Toast;
 
 public class ServicioWebBD extends Activity {
 
+	private int INSERTAR=1;
+	private int MODIFICAR=2;
+	private int BORRAR=3;
+	
 	private EditText dni;
-	private final int acti=2;
 	private final String URL="http://demo.calamar.eui.upm.es/dasmapi/v1/miw04/fichas";
-
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main); 
         dni = (EditText)findViewById(R.id.dni);
     }
-    
-    public void consultar(View v){
-    	//botonPulsado="consultar";
-    	new ConsultaBD().execute(dni.getText().toString());
+      
+    public void goConsultar(View v){
+    	new ConsultaBD().execute(dni.getText().toString()); 
     }
     
-    public void goRead(View v){
-    	new ConsultaBD().execute(dni.getText().toString());    	
-//    	Intent i = new Intent(ServicioWebBD.this,Consulta.class);
-//    	i.putExtra("dni", dni.getText().toString());
-//    	startActivity(i);   
+    public void goInsertar(View v){
+    	new InsertarBD().execute(dni.getText().toString());
     }
     
-    public void goAdd(View v){
-    	Intent i = new Intent(this,Insercion.class);
-    	i.putExtra("dni", dni.getText().toString());
-    	startActivity(i);  	
+    public void goModificar(View v){
+    	new ModificarBD().execute(dni.getText().toString());	
     }
     
-    public void goEdit(View v){
-    	Intent i = new Intent(this,Modificacion.class);
-    	i.putExtra("dni", dni.getText().toString());
-    	startActivity(i);  	
+    public void goBorrar(View v){
+    	new BorrarBD().execute(dni.getText().toString());
     }
-    
-    public void goDelete(View v){
-    	Intent i = new Intent(this,Borrado.class);
-    	i.putExtra("dni", dni.getText().toString());
-    	startActivity(i);  
-    }
-    
-    public void lanzarActividad2(View v){
-    	Intent i = new Intent(this,Actividad2.class);
-    	i.putExtra("dato1", dni.getText().toString());
-    	startActivityForResult(i,acti);
-    }
-    
+
     @Override
     public void onActivityResult(int actividad,int resultado,Intent datos){
-    	if(actividad==acti){
-    		String respuesta=datos.getStringExtra("respuesta");
-    		Toast.makeText(ServicioWebBD.this, "Vuelvo de la actividad 2, respuesta:"+respuesta, Toast.LENGTH_SHORT).show();
-    	}else{
-    		Toast.makeText(ServicioWebBD.this, "Resultado erroneo", Toast.LENGTH_SHORT).show();
-    	}
-    	
+   		String respuesta=datos.getStringExtra("respuesta");
+   		Toast.makeText(ServicioWebBD.this, respuesta, Toast.LENGTH_SHORT).show();  	
     }
     
     private class ConsultaBD extends AsyncTask<String,Void,String>{
@@ -125,11 +101,10 @@ public class ServicioWebBD extends Activity {
 		@Override
 		protected void onPostExecute(String info) {
 			String mensaje = "";
-
 			pDialog.dismiss();
 			if(error) {
 				mensaje = "La consulta genera un error";
-				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			try {
@@ -138,11 +113,11 @@ public class ServicioWebBD extends Activity {
 				switch(numRegistros) {
 				case -1: 
 					mensaje = "La consulta genera un error";
-					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 					break;
 				case 0: 
-					mensaje = "Registro no existente";
-					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+					mensaje = "No existe un registro con ese DNI";
+					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 					break;
 				default:
 					Intent i = new Intent(ServicioWebBD.this, Consulta.class);
@@ -151,12 +126,12 @@ public class ServicioWebBD extends Activity {
 				}
 			} catch (Exception e) {
 				mensaje = "La consulta genera un error de datos";
-				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 			}
 		}    	
     }
     
-    private class CreateBD extends AsyncTask<String, Void, String>{
+    private class InsertarBD extends AsyncTask<String, Void, String>{
 
 		private ProgressDialog pDialog;
 		private boolean error;
@@ -190,7 +165,7 @@ public class ServicioWebBD extends Activity {
 				httpclient.close();
 			} catch (IOException e) {
 				error = true;
-				Log.e("Error en la operaciÃ³n", e.toString());
+				Log.e("Error en la operacion", e.toString());
 				e.printStackTrace();
 			}
 			return datos;            
@@ -201,8 +176,8 @@ public class ServicioWebBD extends Activity {
 			String mensaje = "";
 			pDialog.dismiss();
 			if(error) {
-				mensaje = "Debe introducir un DNI";
-				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+				mensaje = "Introduzca un DNI para crear el registro";
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			try {
@@ -210,29 +185,28 @@ public class ServicioWebBD extends Activity {
 				int numRegistros = arrayDatos.getJSONObject(0).getInt("NUMREG");
 				switch(numRegistros) {
 				case -1: 
-					mensaje = "La inserción genera un error";
-					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+					mensaje = "La insercion genera un error";
+					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 					break;
 				case 0:
 					Intent i = new Intent(ServicioWebBD.this, Insercion.class);
-					i.putExtra("url", URL);
-					i.putExtra("datos", datos);
 					i.putExtra("dni", dni.getText().toString());
-					startActivity(i);
+					i.putExtra("url",URL);
+					startActivityForResult(i,INSERTAR);
 					break;
 				default: 
-					mensaje = "Registro existente";
-					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+					mensaje = "Ya existe un registro con ese DNI";
+					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 				}
 			} catch (Exception e) {
-				mensaje = "La inserción genera un error de datos";
-				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+				mensaje = "La insercion genera un error de datos";
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 			}
 		}
 
 	}
 
-	private class UpdateBD extends AsyncTask<String, Void, String>{
+	private class ModificarBD extends AsyncTask<String, Void, String>{
 
 		private ProgressDialog pDialog;
 		private boolean error;
@@ -266,7 +240,7 @@ public class ServicioWebBD extends Activity {
 				httpclient.close();
 			} catch (IOException e) {
 				error = true;
-				Log.e("Error en la operaciÃ³n", e.toString());
+				Log.e("Error en la operacion", e.toString());
 				e.printStackTrace();
 			}
 			return datos;            
@@ -275,11 +249,10 @@ public class ServicioWebBD extends Activity {
 		@Override
 		protected void onPostExecute(String datos) {
 			String mensaje = "";
-
 			pDialog.dismiss();
 			if(error) {
-				mensaje = "Debe introducir un DNI";
-				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+				mensaje = "Introduzca un DNI para modificar el registro";
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			try {
@@ -287,28 +260,28 @@ public class ServicioWebBD extends Activity {
 				int numRegistros = arrayDatos.getJSONObject(0).getInt("NUMREG");
 				switch(numRegistros) {
 				case -1: 
-					mensaje = "La actualización genera un error";
-					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+					mensaje = "La modificacion genera un error";
+					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 					break;
 				case 0: 
-					mensaje = "Registro no existente";
-					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+					mensaje = "No existe ningun registro con ese DNI";
+					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 					break;
 				default: 
 					Intent i = new Intent(ServicioWebBD.this, Modificacion.class);
 					i.putExtra("datos", datos);
 					i.putExtra("url", URL);
-					startActivity(i);
+					startActivityForResult(i,MODIFICAR);
 				}
 			} catch (Exception e) {
-				mensaje = "La actualización genera un error de datos";
-				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+				mensaje = "La modificacion genera un error de datos";
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 			}
 		}
 
 	}
 
-	private class DeleteBD extends AsyncTask<String, Void, String>{
+	private class BorrarBD extends AsyncTask<String, Void, String>{
 
 		private ProgressDialog pDialog;
 		private boolean error;
@@ -342,7 +315,7 @@ public class ServicioWebBD extends Activity {
 				httpclient.close();
 			} catch (IOException e) {
 				error = true;
-				Log.e("Error en la operaciÃ³n", e.toString());
+				Log.e("Error en la operacion", e.toString());
 				e.printStackTrace();
 			}
 			return datos;            
@@ -354,8 +327,8 @@ public class ServicioWebBD extends Activity {
 
 			pDialog.dismiss();
 			if(error) {
-				mensaje = "Debe introducir un DNI";
-				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+				mensaje = "Introduzca un DNI para borrar el registro";
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			try {
@@ -364,22 +337,21 @@ public class ServicioWebBD extends Activity {
 				switch(numRegistros) {
 				case -1: 
 					mensaje = "El borrado genera un error";
-					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 					break;
 				case 0: 
-					mensaje = "Registro no existente";
-					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+					mensaje = "No existe un registro con ese DNI";
+					Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 					break;
 				default: 
 					Intent i = new Intent(ServicioWebBD.this, Borrado.class);
 					i.putExtra("datos", datos);
 					i.putExtra("url", URL);
-					i.putExtra("dni", dni.getText().toString());
-					startActivity(i);
+					startActivityForResult(i,BORRAR);
 				}
 			} catch (Exception e) {
 				mensaje = "El borrado genera un error de datos";
-				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_LONG).show();
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
