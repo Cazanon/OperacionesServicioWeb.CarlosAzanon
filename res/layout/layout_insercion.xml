@@ -31,7 +31,7 @@
             android:text="DNI" />
 
         <EditText
-            android:id="@+id/dniC"
+            android:id="@+id/dniI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -55,7 +55,7 @@
             android:text="Nombre" />
 
         <EditText
-            android:id="@+id/nombreC"
+            android:id="@+id/nombreI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -78,7 +78,7 @@
             android:text="Apellidos" />
 
         <EditText
-            android:id="@+id/apellidoC"
+            android:id="@+id/apellidosI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -100,7 +100,7 @@
             android:text="Direccion" />
 
         <EditText
-            android:id="@+id/direccionC"
+            android:id="@+id/direccionI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -122,7 +122,7 @@
             android:text="Telefono" />
 
         <EditText
-            android:id="@+id/telefonoC"
+            android:id="@+id/telefonoI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -144,7 +144,7 @@
             android:text="Equipo" />
 
         <EditText
-            android:id="@+id/equipoC"
+            android:id="@+id/equipoI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -162,6 +162,7 @@
             android:id="@+id/first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="insertar"
             android:src="@android:drawable/ic_menu_add" />
 
     </LinearLayout>

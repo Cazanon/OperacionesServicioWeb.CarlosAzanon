@@ -1,28 +1,17 @@
 package com.dasm.carlosazanon;
 
-import java.io.IOException;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.http.AndroidHttpClient;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Consulta extends Activity {
 
-	String respuesta;
 	JSONArray registros;
 	int numRegistros;
 	int registroActual;
@@ -34,27 +23,16 @@ public class Consulta extends Activity {
 	
 		Intent i = getIntent();
 		Bundle extras = i.getExtras();
-		String dni = extras.getString("dni");		
-		new ConsultaBD().execute(dni);
-		//String mensaje = getIntent().getStringExtra("dato1");		
-		//Toast.makeText(Consulta.this, mensaje, Toast.LENGTH_SHORT).show();
-		
-		//((EditText)findViewById(R.id.dniC)).setText(dni);	
-		String mensaje="";
-		if(dni.equals("") && numRegistros==0){
-			mensaje="No existe el DNI";
-		}else if(numRegistros==0){
-			mensaje="No hay registros para mostrar";			
-		}else{
-			try {
-				numRegistros = registros.getJSONObject(0).getInt("NUMREG");
-				registroActual=1;
-				mostrarRegistro(registroActual);
-			} catch (JSONException e) {				
-				e.printStackTrace();
-			}
+		String datos = extras.getString("datos");
+
+		try {
+			registros = new JSONArray(datos);
+			registroActual = 1;
+			numRegistros = registros.getJSONObject(0).getInt("NUMREG");
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
-		 
+		mostrarRegistro(registroActual);		 
 	}
 	
 	/*
@@ -73,75 +51,7 @@ public class Consulta extends Activity {
 		super.onBackPressed();
 	}
 	
-	 private class ConsultaBD extends AsyncTask<String,Void,String>{
-			//Parametro de la entrada
-			//Parametro que manda a la interfaz (por ejemplo el progreso)
-			//Parametro que devuelve el doInBackground y recibe el post execute
-		    	
-		    	//POST -> Inserta registro nuevo
-		    	//PUT  -> Actualizar registro
-		    	private ProgressDialog pDialog;
-		    	private boolean error;
-		    	private final String URL = "http://demo.calamar.eui.upm.es/dasmapi/v1/miw04/fichas";
-		    	
-				@Override
-				protected void onPreExecute() {			
-					super.onPreExecute();
-					error=false;
-					pDialog = new ProgressDialog(Consulta.this);
-					pDialog.setMessage(getString(R.string.progress_title));
-					pDialog.setIndeterminate(false);
-					pDialog.setCancelable(true);
-					pDialog.show();
-				}
-				
-				@Override
-				protected String doInBackground(String... parametros) {
-					String dni = parametros[0];
-					String respuesta = "";
-					String url_final = URL;
-					if(!dni.equals("")){
-						url_final+="/"+dni;
-					}
-					try {
-						AndroidHttpClient httpClient = AndroidHttpClient.newInstance("AndroidHttpClient");
-						HttpGet httpGet = new HttpGet(url_final);
-						HttpResponse response = httpClient.execute(httpGet);
-						respuesta = EntityUtils.toString(response.getEntity());
-						httpClient.close();
-					} catch (IOException e) {
-						error=true;
-						Log.e("Error en la operacion",e.toString());
-					}
-					return respuesta;			
-				}
-				
-				@Override
-				protected void onPostExecute(String respuesta) {
-					pDialog.dismiss();
-					String mensaje = "";
-					if(error){
-						mensaje = "La consulta genera un error";
-						Toast.makeText(Consulta.this, mensaje, Toast.LENGTH_SHORT).show();
-						return;
-					}
-					try {
-						registros = new JSONArray(respuesta);
-						numRegistros = registros.getJSONObject(0).getInt("NUMREG");
-						switch(numRegistros){
-							case -1: mensaje = "La consulta genera un error";
-								break;
-							case 0: mensaje = "La consulta no devuelve registros";
-								break;
-							default: mensaje = "La consulta devuelve "+numRegistros+" registro/s";					
-						}				
-					} catch (JSONException e) {
-						Log.e("Error en la conversion",e.toString());
-					}
-					//Toast.makeText(Consulta.this, mensaje, Toast.LENGTH_SHORT).show();				
-				}	    	
 	 
-	 }
 	 
 	 private void mostrarRegistro(int numeroRegistro){
 			try {
@@ -157,19 +67,49 @@ public class Consulta extends Activity {
 				TextView txtTelefono = (TextView)findViewById(R.id.telefonoC);
 				TextView txtEquipo = (TextView)findViewById(R.id.equipoC);
 
-				txtNombre.setText(registroMostrable.getString("nombreC"));
+				txtDni.setText(registroMostrable.getString("DNI"));
+				txtDni.setEnabled(false);
+				txtNombre.setText(registroMostrable.getString("Nombre"));
 				txtNombre.setFocusable(false);
-				txtApellidos.setText(registroMostrable.getString("apellidoC"));
+				txtApellidos.setText(registroMostrable.getString("Apellidos"));
 				txtApellidos.setFocusable(false);
-				txtDireccion.setText(registroMostrable.getString("direccionC"));
+				txtDireccion.setText(registroMostrable.getString("Direccion"));
 				txtDireccion.setFocusable(false);
-				txtTelefono.setText(registroMostrable.getString("telefonoC"));
+				txtTelefono.setText(registroMostrable.getString("Telefono"));
 				txtTelefono.setFocusable(false);
-				txtEquipo.setText(registroMostrable.getString("equipoC"));
+				txtEquipo.setText(registroMostrable.getString("Equipo"));
 				txtEquipo.setFocusable(false);				
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
+	 
+	 public void primero(View v) {
+		 if(registroActual!=1){
+			 registroActual=1;
+			 mostrarRegistro(registroActual);
+		 }
+	 }
+
+	 public void anterior(View v) {
+		 if(registroActual!=1){
+			 registroActual--;
+			 mostrarRegistro(registroActual);
+		 }
+	 }
+
+	 public void siguiente(View v) {
+		 if(registroActual!=numRegistros){
+			 registroActual++;
+			 mostrarRegistro(registroActual);
+		 }
+	 }
+
+	 public void ultimo(View v) {
+		 if(registroActual!=numRegistros){
+			 registroActual=numRegistros;
+			 mostrarRegistro(registroActual);
+		 }
+	 }
 	
 }

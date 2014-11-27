@@ -169,27 +169,31 @@
         android:gravity="center_horizontal" >
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/primero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="primero"
             android:src="@android:drawable/ic_media_previous" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/anterior"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="anterior"
             android:src="@android:drawable/ic_media_rew" />
 
         <ImageButton
-            android:id="@+id/next"
+            android:id="@+id/siguiente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="siguiente"
             android:src="@android:drawable/ic_media_ff" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/ultimo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="ultimo"
             android:src="@android:drawable/ic_media_next" />
 
     </LinearLayout>
