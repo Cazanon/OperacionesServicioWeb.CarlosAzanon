@@ -25,10 +25,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Actividad2"
-            android:label="@string/title_activity_actividad2" >
-        </activity>
-        <activity
             android:name=".Consulta"
             android:label="@string/title_activity_consulta" >
         </activity>
@@ -45,8 +41,8 @@
             android:label="@string/title_activity_borrado" >
         </activity>
         <activity
-            android:name=".Opciones"
-            android:label="@string/title_activity_opciones" >
+            android:name=".Configuracion"
+            android:label="@string/title_activity_configuracion" >
         </activity>
     </application>
 

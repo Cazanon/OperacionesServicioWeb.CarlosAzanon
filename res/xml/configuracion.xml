@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+   xmlns:android="http://schemas.android.com/apk/res/android" 
+   android:key="configuracion" > 
+    <EditTextPreference
+        android:key="direccion"
+        android:summary="URL donde se realiza la conexion"        
+        android:title="URL Servidor" />
+    <EditTextPreference
+        android:key="usuario"
+        android:summary="Usuario para la conexion"
+        android:title="Usuario" />
+    <EditTextPreference
+        android:key="pass"
+        android:summary="Clave de usuario"
+        android:title="Contraseña" />
+
+</PreferenceScreen>

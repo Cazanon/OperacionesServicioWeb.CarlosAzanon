@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditTextPreference
+        android:key="menu_servidor"
+        android:summary="Dirección del servidor al que se realizará la conexión"
+        android:title="URL Servidor" />
+    <EditTextPreference
+        android:key="menu_usuario"
+        android:summary="Usuario que realizará la conexión"
+        android:title="Usuario" />
+    <EditTextPreference
+        android:key="fragmentos"
+        android:summary="Clave del usuario que realizará la conexión"
+        android:title="Palabra clave" />
+
+</PreferenceScreen>

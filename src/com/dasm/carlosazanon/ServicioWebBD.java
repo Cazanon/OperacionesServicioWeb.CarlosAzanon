@@ -14,6 +14,8 @@ import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,10 +27,14 @@ public class ServicioWebBD extends Activity {
 	private int INSERTAR=1;
 	private int MODIFICAR=2;
 	private int BORRAR=3;
+	private int CONFIGURACION=4;
+	private boolean config=false;
+	private String usuario="";
+	private String pass="";
 	
 	private EditText dni;
-	private final String URL="http://demo.calamar.eui.upm.es/dasmapi/v1/miw04/fichas";
-	
+	private String URL="http://demo.calamar.eui.upm.es/dasmapi/v1/miw04/fichas";
+	//http://demo.calamar.eui.upm.es/dasmapi/v1/miw04/connect/139285330
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -38,10 +44,16 @@ public class ServicioWebBD extends Activity {
         new Conexion().execute();
     }
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu, menu);
+		return true;
+	}
+
     private class Conexion extends AsyncTask<String,Void,String>{
     
 		@Override
-		protected String doInBackground(String... params) {			
+		protected String doInBackground(String... params) {		
 			String datos = "";
 			try {
 				AndroidHttpClient httpClient = AndroidHttpClient.newInstance("AndroidHttpClient");
@@ -49,8 +61,9 @@ public class ServicioWebBD extends Activity {
 				HttpResponse response = httpClient.execute(httpGet);
 				datos = EntityUtils.toString(response.getEntity());
 				httpClient.close();
-			} catch (IOException e) {
+			}catch(IOException e){
 				procesarError();
+				return "";
 			}
 			return datos;	
 		}
@@ -64,18 +77,35 @@ public class ServicioWebBD extends Activity {
 					procesarError();
 					return;
 				}
-			}catch (Exception e){
+			}catch(Exception e){
 				procesarError();
 				return;
-			}
-			Toast.makeText(ServicioWebBD.this, "Conexion establecida", Toast.LENGTH_SHORT).show();
+			}	
+			procesarConfiguracion();			
 		}	
 		
 		private void procesarError(){
-			Toast.makeText(ServicioWebBD.this, "Fallo al conectar", Toast.LENGTH_SHORT).show();
+			if(config){
+				String mensaje="Fallo al Conectar:\nUsuario: "+usuario+" Contraseña: "+pass+"\nURL: "+URL;
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
+				config=false;
+			}else{
+				Toast.makeText(ServicioWebBD.this, "Fallo al conectar", Toast.LENGTH_SHORT).show();
+			}
 			deshabilitarFuncionalidad();
 		}
-    }
+		
+		private void procesarConfiguracion(){
+			if(config){
+				String mensaje="Conexion establecida\nUsuario: "+usuario+" Contraseña: "+pass;
+				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
+				config=false;
+			}else{
+				Toast.makeText(ServicioWebBD.this, "Conexion establecida", Toast.LENGTH_SHORT).show();
+			}			
+			habilitarFuncionalidad();
+		}
+    }  	
     
 	private void deshabilitarFuncionalidad() {		
 		TextView dni = (TextView)findViewById(R.id.dni);
@@ -89,6 +119,20 @@ public class ServicioWebBD extends Activity {
 		modificar.setEnabled(false);
 		insertar.setEnabled(false);
 		borrar.setEnabled(false);		
+	}
+	
+	private void habilitarFuncionalidad() {		
+		TextView dni = (TextView)findViewById(R.id.dni);
+		ImageButton consultar=(ImageButton)findViewById(R.id.consultar);
+		ImageButton modificar=(ImageButton)findViewById(R.id.modificar);
+		ImageButton insertar=(ImageButton)findViewById(R.id.insertar);
+		ImageButton borrar=(ImageButton)findViewById(R.id.borrar);
+		
+		dni.setEnabled(true);
+		consultar.setEnabled(true);
+		modificar.setEnabled(true);
+		insertar.setEnabled(true);
+		borrar.setEnabled(true);		
 	}
 	
 	public void goConsultar(View v){
@@ -105,12 +149,29 @@ public class ServicioWebBD extends Activity {
     
     public void goBorrar(View v){
     	new BorrarBD().execute(dni.getText().toString());
-    }
+    }    
+    
+    public void goConfiguracion(MenuItem item){
+    	Intent i=new Intent(ServicioWebBD.this, Configuracion.class);
+    	i.putExtra("url", URL);
+		startActivityForResult(i,CONFIGURACION);
+	}
 
     @Override
     public void onActivityResult(int actividad,int resultado,Intent datos){
-   		String respuesta=datos.getStringExtra("respuesta");
-   		Toast.makeText(ServicioWebBD.this, respuesta, Toast.LENGTH_SHORT).show();  	
+    	if(actividad!=CONFIGURACION){
+	   		String respuesta=datos.getStringExtra("respuesta");
+	   		Toast.makeText(ServicioWebBD.this, respuesta, Toast.LENGTH_SHORT).show();
+    	}else{
+    		String urlRecibida=datos.getStringExtra("url");
+    		if(!urlRecibida.equals("")){
+        		URL=datos.getStringExtra("url");  
+        		config=true; 			
+    		}
+    		usuario=datos.getStringExtra("usuario");
+    		pass=datos.getStringExtra("pass");
+            new Conexion().execute();
+    	}
     }
     
     private class ConsultaBD extends AsyncTask<String,Void,String>{
