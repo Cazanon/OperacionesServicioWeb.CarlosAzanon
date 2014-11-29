@@ -29,8 +29,10 @@ public class ServicioWebBD extends Activity {
 	private int BORRAR=3;
 	private int CONFIGURACION=4;
 	private boolean config=false;
-	private String usuario="";
-	private String pass="";
+	private String usuario="miw04";
+	private String pass="139285330";
+	private String urlConexion="http://demo.calamar.eui.upm.es/dasmapi/v1";
+	private String conexion=urlConexion+"/"+usuario+"/connect/"+pass;
 	
 	private EditText dni;
 	private String URL="http://demo.calamar.eui.upm.es/dasmapi/v1/miw04/fichas";
@@ -57,7 +59,7 @@ public class ServicioWebBD extends Activity {
 			String datos = "";
 			try {
 				AndroidHttpClient httpClient = AndroidHttpClient.newInstance("AndroidHttpClient");
-				HttpGet httpGet = new HttpGet(URL);
+				HttpGet httpGet = new HttpGet(conexion);
 				HttpResponse response = httpClient.execute(httpGet);
 				datos = EntityUtils.toString(response.getEntity());
 				httpClient.close();
@@ -73,7 +75,7 @@ public class ServicioWebBD extends Activity {
 			try {
 				JSONArray arrayDatos = new JSONArray(datos);
 				int n=arrayDatos.getJSONObject(0).getInt("NUMREG");
-				if(n==-1){
+				if(n!=0){
 					procesarError();
 					return;
 				}
@@ -86,7 +88,7 @@ public class ServicioWebBD extends Activity {
 		
 		private void procesarError(){
 			if(config){
-				String mensaje="Fallo al Conectar:\nUsuario: "+usuario+" Contraseña: "+pass+"\nURL: "+URL;
+				String mensaje="Fallo al Conectar:\nUsuario: "+usuario+" Contraseña: "+pass+"\nURL: "+conexion;
 				Toast.makeText(ServicioWebBD.this, mensaje, Toast.LENGTH_SHORT).show();
 				config=false;
 			}else{
@@ -153,7 +155,7 @@ public class ServicioWebBD extends Activity {
     
     public void goConfiguracion(MenuItem item){
     	Intent i=new Intent(ServicioWebBD.this, Configuracion.class);
-    	i.putExtra("url", URL);
+    	i.putExtra("url", conexion);
 		startActivityForResult(i,CONFIGURACION);
 	}
 
@@ -164,12 +166,12 @@ public class ServicioWebBD extends Activity {
 	   		Toast.makeText(ServicioWebBD.this, respuesta, Toast.LENGTH_SHORT).show();
     	}else{
     		String urlRecibida=datos.getStringExtra("url");
-    		if(!urlRecibida.equals("")){
-        		URL=datos.getStringExtra("url");  
-        		config=true; 			
-    		}
     		usuario=datos.getStringExtra("usuario");
     		pass=datos.getStringExtra("pass");
+    		if(!urlRecibida.equals("")){
+    			conexion=urlRecibida+"/"+usuario+"/connect/"+pass;
+        		config=true; 			
+    		}
             new Conexion().execute();
     	}
     }
