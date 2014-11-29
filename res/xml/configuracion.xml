@@ -4,14 +4,17 @@
    android:key="configuracion" > 
     <EditTextPreference
         android:key="direccion"
+        android:defaultValue="http://demo.calamar.eui.upm.es/dasmapi/v1"
         android:summary="URL donde se realiza la conexion"        
         android:title="URL Servidor" />
     <EditTextPreference
         android:key="usuario"
+        android:defaultValue="miw04"
         android:summary="Usuario para la conexion"
         android:title="Usuario" />
     <EditTextPreference
         android:key="pass"
+        android:defaultValue="139285330"
         android:summary="Clave de usuario"
         android:title="Contraseña" />
 
